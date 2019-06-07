@@ -26,7 +26,7 @@ spring:
 
 
 mybatis:
-  type-aliases-package: com.adweb.adwebapi.entity
+  type-aliases-package: com.adweb.adweb.entity
   mapper-locations: classpath*:mapper/*.xml
 logging:
   level:
