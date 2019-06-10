@@ -26,4 +26,18 @@ public class CourseController {
         jsonObject.put("dataList",list);
         return jsonObject.toString();
     }
+    @GetMapping(value = "type",produces = "application/json;UT8-8")
+    public String getAllType(){
+        JSONObject jsonObject=new MyJson();
+        JsonUtils.setSuccess(jsonObject);
+        jsonObject.put("dataList",courseService.getAllType());
+        return jsonObject.toString();
+    }
+    @GetMapping(value = "{id}",produces = "application/json;UT8-8")
+    public String getCourseById(@PathVariable()Integer id){
+        JSONObject jsonObject=new MyJson();
+        JsonUtils.setSuccess(jsonObject);
+        jsonObject.put("data",courseService.getCourseById(id));
+        return jsonObject.toString();
+    }
 }

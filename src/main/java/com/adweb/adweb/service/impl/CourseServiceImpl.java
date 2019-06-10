@@ -1,5 +1,6 @@
 package com.adweb.adweb.service.impl;
 
+import com.adweb.adweb.JSONBean.course.CourseTypeJSONBean;
 import com.adweb.adweb.dao.CourseDao;
 import com.adweb.adweb.entity.Course;
 import com.adweb.adweb.entity.CourseExample;
@@ -16,6 +17,18 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> getCourseByType(String type) {
         CourseExample courseExample=new CourseExample();
         courseExample.createCriteria().andTypeEqualTo(type);
+        courseExample.setOrderByClause("order_number");
         return courseDao.selectByExample(courseExample);
     }
+
+    @Override
+    public List<CourseTypeJSONBean> getAllType() {
+        return courseDao.getAllType();
+    }
+
+    @Override
+    public Course getCourseById(Integer id) {
+        return courseDao.getCourseDetailById(id);
+    }
+
 }

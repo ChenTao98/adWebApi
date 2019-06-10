@@ -1,5 +1,6 @@
 package com.adweb.adweb.dao;
 
+import com.adweb.adweb.JSONBean.course.CourseTypeJSONBean;
 import com.adweb.adweb.entity.Course;
 import com.adweb.adweb.entity.CourseExample;
 import java.util.List;
@@ -27,4 +28,7 @@ public interface CourseDao {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+    //以下为个人自己添加
+    List<CourseTypeJSONBean> getAllType();
+    Course getCourseDetailById(Integer courseId);
 }

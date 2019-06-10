@@ -2,6 +2,7 @@ package com.adweb.adweb.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * course
@@ -216,5 +217,15 @@ public class Course implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+//    自己添加
+    private List<Chapter> chapterList;
+
+    public List<Chapter> getChapterList() {
+        return chapterList;
+    }
+
+    public void setChapterList(List<Chapter> chapterList) {
+        this.chapterList = chapterList;
     }
 }
