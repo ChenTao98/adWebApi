@@ -2,9 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.adweb.adweb.dao.CourseDao">
     <!--个人添加-->
+    <!-- 获得所有课程type-->
     <select id="getAllType" resultType="com.adweb.adweb.JSONBean.course.CourseTypeJSONBean">
     select distinct `type` from course order by `type`
   </select>
+
+    <resultMap id="ThemeCourseMap" type="com.adweb.adweb.entity.Course">
+        <id column="course_id" jdbcType="INTEGER" property="id"/>
+        <result column="course_name" jdbcType="VARCHAR" property="name"/>
+        <result column="course_summary" jdbcType="VARCHAR" property="summary"/>
+        <result column="course_teacher_id" jdbcType="VARCHAR" property="teacherId"/>
+        <result column="course_start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="course_end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="course_image_src" jdbcType="VARCHAR" property="imageSrc"/>
+        <result column="course_credit" jdbcType="INTEGER" property="credit"/>
+        <result column="course_type" jdbcType="VARCHAR" property="type"/>
+        <result column="course_theme_id" jdbcType="INTEGER" property="themeId"/>
+        <result column="course_order_number" jdbcType="INTEGER" property="orderNumber"/>
+    </resultMap>
+    <select id="getCourseByThemeID" resultMap="ThemeCourseMap" parameterType="java.lang.Integer">
+        select
+        course.id as course_id,
+        course.name as course_name,
+        course.summary as course_summary,
+        course.teacher_id as course_teacher_id,
+        course.start_time as course_start_time,
+        course.end_time as course_end_time,
+        course.image_src as course_image_src,
+        course.credit as course_credit,
+        course.type as course_type,
+        course.theme_id as course_theme_id,
+        course.order_number as course_order_number
+        from course
+        where theme_id=#{themeID,jdbcType=INTEGER}
+        order by order_number
+    </select>
+
     <resultMap id="DetailMap" type="com.adweb.adweb.entity.Course">
         <id column="course_id" jdbcType="INTEGER" property="id"/>
         <result column="course_name" jdbcType="VARCHAR" property="name"/>

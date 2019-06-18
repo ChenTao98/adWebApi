@@ -40,4 +40,6 @@ public class CourseController {
         jsonObject.put("data",courseService.getCourseById(id));
         return jsonObject.toString();
     }
+   
+
 }
