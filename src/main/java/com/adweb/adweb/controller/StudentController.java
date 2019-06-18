@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private CourseService courseService;
+
     @GetMapping(value = "credit/{studentID}",produces = "application/json;UT8-8")
     public String getMyCredit(@PathVariable() String studentID){
         JSONObject jsonObject=new MyJson();
@@ -34,21 +33,5 @@ public class StudentController {
         jsonObject.put("dataList",studentService.getMyCourse(studentID));
         return jsonObject.toString();
     }
-    //找到所有主题
-    @GetMapping(value = "theme",produces = "application/json;UT8-8")
-    public String getAllTheme(){
-        JSONObject jsonObject=new MyJson();
-        JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",courseService.getAllTheme());
-        return jsonObject.toString();
-    }
 
-    //找到主题下所有课程
-    @GetMapping(value = "theme/{themeID}",produces = "application/json;UT8-8")
-    public String getAllTheme(@PathVariable() int themeID){
-        JSONObject jsonObject=new MyJson();
-        JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID));
-        return jsonObject.toString();
-    }
 }
