@@ -1,4 +1,4 @@
-package com.adweb.adweb.controllor;
+package com.adweb.adweb.controller;
 
 import com.adweb.adweb.JsonUtil.JsonUtils;
 import com.adweb.adweb.JsonUtil.MyJson;
