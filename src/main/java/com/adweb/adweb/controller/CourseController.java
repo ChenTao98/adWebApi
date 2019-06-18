@@ -40,6 +40,20 @@ public class CourseController {
         jsonObject.put("data",courseService.getCourseById(id));
         return jsonObject.toString();
     }
+    @GetMapping(value = "theme",produces = "application/json;UT8-8")
+    public String getAllTheme(){
+        JSONObject jsonObject=new MyJson();
+        JsonUtils.setSuccess(jsonObject);
+        jsonObject.put("dataList",courseService.getAllTheme());
+        return jsonObject.toString();
+    }
+    @GetMapping(value = "theme/{themeID}",produces = "application/json;UT8-8")
+    public String getAllCourseByThemeID(@PathVariable() int themeID){
+        JSONObject jsonObject=new MyJson();
+        JsonUtils.setSuccess(jsonObject);
+        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID));
+        return jsonObject.toString();
+    }
    
 
 }
