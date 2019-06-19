@@ -1,5 +1,6 @@
 package com.adweb.adweb.dao;
 
+import com.adweb.adweb.entity.Course;
 import com.adweb.adweb.entity.CourseSelection;
 import com.adweb.adweb.entity.CourseSelectionExample;
 import com.adweb.adweb.entity.CourseSelectionKey;
@@ -28,4 +29,6 @@ public interface CourseSelectionDao {
     int updateByPrimaryKeySelective(CourseSelection record);
 
     int updateByPrimaryKey(CourseSelection record);
+
+    List<Course> getMyCourse(String studentID);
 }

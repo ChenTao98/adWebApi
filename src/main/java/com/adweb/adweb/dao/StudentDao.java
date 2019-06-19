@@ -27,4 +27,6 @@ public interface StudentDao {
     int updateByPrimaryKeySelective(Student record);
 
     int updateByPrimaryKey(Student record);
+
+    int getMyCredit(String studentID);
 }

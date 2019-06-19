@@ -27,4 +27,8 @@ public interface ChoiceQuestionDao {
     int updateByPrimaryKeySelective(ChoiceQuestion record);
 
     int updateByPrimaryKey(ChoiceQuestion record);
+
+    List<ChoiceQuestion> getHomeworkBySectionID(int sectionID);
+
+//    List<ChoiceQuestion> getHomeworkBySectionIDAndStudentID();
 }
