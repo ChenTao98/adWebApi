@@ -9,7 +9,6 @@ import com.adweb.adweb.utils.ApiResult;
 import com.adweb.adweb.utils.StringUtil;
 import com.adweb.adweb.utils.errorCode.ErrorCode;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
@@ -46,9 +45,8 @@ public class CollectionController {
             if (collectionService.addCollection(record)) {
                 return ApiResult.writeSuccess();
             }
+            return ApiResult.writeError(ErrorCode.ADD_COLLECTION_FAILED);
         } catch (DuplicateKeyException e) {
-
-        } finally {
             return ApiResult.writeError(ErrorCode.ADD_COLLECTION_FAILED);
         }
     }
@@ -56,7 +54,7 @@ public class CollectionController {
     /**
      * 获取收藏
      * */
-    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET,
+    @RequestMapping(value = "/get_all", method = RequestMethod.POST,
             consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
     public String getCollections(@RequestBody JSONObject data) {
         String open_id = data.getString("open_id");
@@ -83,7 +81,7 @@ public class CollectionController {
     /**
      * 取消收藏
      * */
-    @RequestMapping(value = "/{knowledge_id}", method = RequestMethod.DELETE,
+    @RequestMapping(value = "/delete/{knowledge_id}", method = RequestMethod.POST,
             consumes = "application/json;charset=UTF-8", produces = "application/json;charset=UTF-8")
     public String deleteCollection(@RequestBody JSONObject jsonParam, @PathVariable Integer knowledge_id) {
         String open_id = jsonParam.getString("open_id");
