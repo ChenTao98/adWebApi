@@ -69,6 +69,13 @@
   <sql id="Base_Column_List">
     open_id, `name`, email, sex, revised_credits
   </sql>
+
+  <select id="getMyCredit" resultType="int" parameterType="java.lang.String">
+    select revised_credits from student where open_id=#{studentID,jdbcType=VARCHAR}
+
+  </select>
+
+
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.StudentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

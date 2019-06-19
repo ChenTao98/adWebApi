@@ -11,7 +11,7 @@
     <groupId>com.adweb</groupId>
     <artifactId>adwebapi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>adwebapi</name>
+    <name>ADWebApi</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

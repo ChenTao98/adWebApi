@@ -64,6 +64,16 @@ public class Course implements Serializable {
      */
     private Integer orderNumber;
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    private Integer status;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {

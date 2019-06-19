@@ -68,6 +68,10 @@
   <sql id="Base_Column_List">
     id, section_id, content, answer_key
   </sql>
+
+
+
+
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.ChoiceQuestionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

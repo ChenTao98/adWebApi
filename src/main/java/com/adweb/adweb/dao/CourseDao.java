@@ -1,5 +1,6 @@
 package com.adweb.adweb.dao;
 
+import com.adweb.adweb.JSONBean.course.CourseThemeJSONBean;
 import com.adweb.adweb.JSONBean.course.CourseTypeJSONBean;
 import com.adweb.adweb.entity.Course;
 import com.adweb.adweb.entity.CourseExample;
@@ -31,4 +32,11 @@ public interface CourseDao {
     //以下为个人自己添加
     List<CourseTypeJSONBean> getAllType();
     Course getCourseDetailById(Integer courseId);
+
+
+    List<CourseThemeJSONBean> getAllTheme();
+
+    List<Course> getCourseByThemeID(int themeID);
+
+
 }
