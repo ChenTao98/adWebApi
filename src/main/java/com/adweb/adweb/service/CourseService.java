@@ -15,7 +15,7 @@ public interface CourseService {
 
 
     List<Theme> getAllTheme();
-    List<Course> getCourseByThemeID(int themeID);
+    List<Course> getCourseByThemeID(int themeID,String studentID);
     Course getCourseByIdAndStu(Integer id,String student_id);
     List getAllCourseOrderByType(String student_id);
     void course_selection(String studentId,int courseId);

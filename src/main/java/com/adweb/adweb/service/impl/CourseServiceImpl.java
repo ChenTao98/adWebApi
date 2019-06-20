@@ -64,9 +64,26 @@ public class CourseServiceImpl implements CourseService {
 
         return themeDao.selectByExample(new ThemeExample());
     }
-    public List<Course> getCourseByThemeID(int themeID) {
+    @Override
+    public List<Course> getCourseByThemeID(int themeID,String student_id ) {
+        List<Course> list = courseDao.getCourseByThemeID(themeID);
+        for(int i=0;i<list.size();i++){
+            int lastestSectionId;
+            Boolean taked = false;
+            int times = courseDao.judgeTaked(list.get(i).getId(),student_id);
+            if(times ==1){
+                taked = true;
+            }
+            if(taked){
+                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
+            }else{
+                lastestSectionId = -1;
+            }
 
-        return courseDao.getCourseByThemeID(themeID);
+            list.get(i).setTaked(taked);
+            list.get(i).setLastestSectionId(lastestSectionId);
+        }
+        return list;
     }
     @Override
     public void course_selection(String studentId,int courseId){
