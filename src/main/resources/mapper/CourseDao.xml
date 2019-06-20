@@ -7,6 +7,17 @@
     select distinct `type` from course order by `type`
   </select>
 
+
+    <select id="judgeTaked" resultType="java.lang.Integer" parameterType="com.adweb.adweb.entity.CourseAndStudent">
+    select count(*) from course_selection where student_id=#{student_id,jdbcType=VARCHAR} and course_id=#{course_id,jdbcType=INTEGER}
+      </select>
+
+    <select id="findLatestSectionId" resultType="java.lang.Integer" parameterType="com.adweb.adweb.entity.CourseAndStudent">
+    select section_id from course_selection where student_id=#{student_id,jdbcType=VARCHAR} and course_id=#{course_id,jdbcType=INTEGER}
+      </select>
+
+
+
     <resultMap id="ThemeCourseMap" type="com.adweb.adweb.entity.Course">
         <id column="course_id" jdbcType="INTEGER" property="id"/>
         <result column="course_name" jdbcType="VARCHAR" property="name"/>

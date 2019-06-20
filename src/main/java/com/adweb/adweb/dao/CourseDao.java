@@ -38,5 +38,9 @@ public interface CourseDao {
 
     List<Course> getCourseByThemeID(int themeID);
 
+    int judgeTaked(int course_id,String student_id);
+
+    int findLatestSectionId(int course_id,String student_id);
+
 
 }

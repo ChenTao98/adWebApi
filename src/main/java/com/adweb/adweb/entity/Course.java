@@ -64,6 +64,26 @@ public class Course implements Serializable {
      */
     private Integer orderNumber;
 
+    private Boolean taked;
+
+    public Boolean getTaked() {
+        return taked;
+    }
+
+    public void setTaked(Boolean taked) {
+        this.taked = taked;
+    }
+
+    public int getLastestSectionId() {
+        return lastestSectionId;
+    }
+
+    public void setLastestSectionId(int lastestSectionId) {
+        this.lastestSectionId = lastestSectionId;
+    }
+
+    private int lastestSectionId;
+
     public Integer getStatus() {
         return status;
     }

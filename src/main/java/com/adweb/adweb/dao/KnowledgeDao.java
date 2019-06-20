@@ -27,4 +27,6 @@ public interface KnowledgeDao {
     int updateByPrimaryKeySelective(Knowledge record);
 
     int updateByPrimaryKey(Knowledge record);
+
+    List<Knowledge> getKnowledgeBySectionID(int sectionID);
 }

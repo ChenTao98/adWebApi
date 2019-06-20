@@ -17,4 +17,8 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     public Knowledge getKnowledgeByKnowledgeId(int knowledge_id) {
         return knowledgeDao.selectByPrimaryKey(knowledge_id);
     }
+    @Override
+    public List<Knowledge> getKnowledgeBySectionId(int section_id) {
+        return knowledgeDao.getKnowledgeBySectionID(section_id);
+    }
 }

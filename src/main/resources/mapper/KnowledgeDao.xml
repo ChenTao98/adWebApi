@@ -71,6 +71,12 @@
   <sql id="Base_Column_List">
     id, `type`, content, order_number, section_id, importance_degree, who_say
   </sql>
+
+  <select id="getKnowledgeBySectionID" parameterType="java.lang.Integer" resultType="com.adweb.adweb.entity.Knowledge">
+    select content,id,type,order_number as orderNumber, who_say as whoSay, section_id as sectionId,importance_degree as importanceDegree from knowledge where section_id = #{section_id,jdbcType=INTEGER} order by order_number
+  </select>
+
+
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.KnowledgeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
