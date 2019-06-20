@@ -27,4 +27,6 @@ public interface OptionDao {
     int updateByPrimaryKeySelective(Option record);
 
     int updateByPrimaryKey(Option record);
+
+    List<Option> selectOptionByQuestionID(int question_id);
 }

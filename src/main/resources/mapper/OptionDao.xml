@@ -68,6 +68,13 @@
   <sql id="Base_Column_List">
     id, question_id, content, is_correct
   </sql>
+
+  <select id="selectOptionByQuestionID" parameterType="java.lang.Integer" resultType="com.adweb.adweb.entity.Option">
+        select id,content,is_correct as isCorrect from `option` where question_id = #{question_id,jdbcType=INTEGER};
+  </select>
+
+
+
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.OptionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

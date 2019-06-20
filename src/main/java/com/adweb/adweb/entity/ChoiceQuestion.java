@@ -1,6 +1,8 @@
 package com.adweb.adweb.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * choice_question
@@ -26,6 +28,37 @@ public class ChoiceQuestion implements Serializable {
      * 答案解析
      */
     private String answerKey;
+
+
+    public List<Option> getOptionList() {
+        return optionList;
+    }
+
+    public void setOptionList(List<Option> optionList) {
+        this.optionList = optionList;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
+    public int getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
+    }
+
+    private List<Option> optionList;
+
+    private String openId;
+
+    private int answerId;
 
     private static final long serialVersionUID = 1L;
 
@@ -60,6 +93,18 @@ public class ChoiceQuestion implements Serializable {
     public void setAnswerKey(String answerKey) {
         this.answerKey = answerKey;
     }
+
+
+    public ArrayList<Option> getOptions() {
+        return options;
+    }
+
+    public void setOptions(ArrayList<Option> options) {
+        this.options = options;
+    }
+
+
+    private ArrayList<Option> options = new ArrayList<>();
 
     @Override
     public boolean equals(Object that) {
@@ -104,4 +149,6 @@ public class ChoiceQuestion implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+
 }

@@ -67,6 +67,12 @@
   <sql id="Base_Column_List">
     student_id, question_id, option_id
   </sql>
+
+  <select id="selectOptionIDByStuAndQues" parameterType="com.adweb.adweb.entity.QuestionAndStudent" resultType="java.lang.Integer">
+        select  IFNULL (MAX(option_id), -1)  from question_answer where student_id =#{open_id,jdbcType=VARCHAR} and question_id =#{question_id,jdbcType=INTEGER}
+  </select>
+
+
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.QuestionAnswerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

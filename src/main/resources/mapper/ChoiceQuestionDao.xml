@@ -69,7 +69,9 @@
     id, section_id, content, answer_key
   </sql>
 
-
+  <select id="selectHomeworkBySectionID" parameterType="java.lang.Integer" resultType="com.adweb.adweb.entity.ChoiceQuestion">
+        select answer_key as answerKey,section_id as sectionId,content,id from choice_question where section_id =#{section_id,jdbcType=INTEGER}
+  </select>
 
 
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.ChoiceQuestionExample" resultMap="BaseResultMap">
