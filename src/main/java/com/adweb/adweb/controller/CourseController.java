@@ -6,10 +6,7 @@ import com.adweb.adweb.entity.Course;
 import com.adweb.adweb.service.CourseService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +15,17 @@ import java.util.List;
 public class CourseController {
     @Autowired
     private CourseService courseService;
-    @GetMapping(value = "type/{typeName}",produces = "application/json;UT8-8")
+    //选课
+    @RequestMapping(value = "taked/",method = RequestMethod.PUT,produces = "application/json;utf-8")
+    public String course_selection(@RequestParam("courseId") int courseId,@RequestHeader(name="openID") String studentID){
+        JSONObject jsonObject=new MyJson();
+        JsonUtils.setSuccess(jsonObject);
+        System.out.println(studentID);
+        System.out.println(courseId);
+        courseService.course_selection(studentID,courseId);
+        return jsonObject.toString();
+    }
+    @GetMapping(value = "type/{typeName}",produces = "application/json;UTF-8")
     public String getCourseByType(@PathVariable() String typeName){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
@@ -26,7 +33,7 @@ public class CourseController {
         jsonObject.put("dataList",list);
         return jsonObject.toString();
     }
-    @GetMapping(value = "type",produces = "application/json;UT8-8")
+    @GetMapping(value = "type",produces = "application/json;UTF-8")
     public String getAllType(){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
@@ -54,6 +61,13 @@ public class CourseController {
         jsonObject.put("dataList",courseService.getCourseByThemeID(themeID));
         return jsonObject.toString();
     }
-   
+//    @PutMapping(value = "theme/{themeID}", produces = "application/json;UT8-8")
+//    public String getAllCourseByThemeID(@PathVariable() int themeID){
+//        JSONObject jsonObject=new MyJson();
+//        JsonUtils.setSuccess(jsonObject);
+//        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID));
+//        return jsonObject.toString();
+//    }
+
 
 }
