@@ -26,12 +26,12 @@ public class CourseController {
         courseService.course_selection(studentID,courseId);
         return jsonObject.toString();
     }
-    //获取分类课程
+    //8.获取分类课程
     @GetMapping(value = "type/{typeName}",produces = "application/json;UTF-8")
-    public String getCourseByType(@PathVariable() String typeName){
+    public String getCourseByType(@PathVariable() String typeName,@RequestHeader(name="openID") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        List<Course> list=courseService.getCourseByType(typeName);
+        List<Course> list=courseService.getCourseByTypeAndStu(typeName,studentID);
         jsonObject.put("dataList",list);
         return jsonObject.toString();
     }
@@ -53,7 +53,7 @@ public class CourseController {
     }
 
 
-    //6.获得课程列表
+    //7.获得课程列表
     @GetMapping(value = "",produces = "application/json;UTF-8")
     public String getCourseById(@RequestHeader(name="openID") String studentID){
         JSONObject jsonObject=new MyJson();
