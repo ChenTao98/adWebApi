@@ -23,8 +23,6 @@ public class CourseController {
     public String course_selection(@RequestParam("courseId") int courseId,@RequestHeader(name="openID") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        System.out.println(studentID);
-        System.out.println(courseId);
         courseService.course_selection(studentID,courseId);
         return jsonObject.toString();
     }
@@ -46,22 +44,32 @@ public class CourseController {
         return jsonObject.toString();
     }
     //6.课程详细信息
-    @GetMapping(value = "{id}",produces = "application/json;UT8-8")
+    @GetMapping(value = "{id}",produces = "application/json;UTF-8")
     public String getCourseById(@PathVariable()Integer id,@RequestHeader(name="openID") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         jsonObject.put("data",courseService.getCourseByIdAndStu(id,studentID));
         return jsonObject.toString();
     }
+
+
+    //6.获得课程列表
+    @GetMapping(value = "",produces = "application/json;UTF-8")
+    public String getCourseById(@RequestHeader(name="openID") String studentID){
+        JSONObject jsonObject=new MyJson();
+        JsonUtils.setSuccess(jsonObject);
+        jsonObject.put("data",courseService.getAllCourseOrderByType(studentID));
+        return jsonObject.toString();
+    }
     //4.获取主题列表
-    @GetMapping(value = "theme",produces = "application/json;UT8-8")
+    @GetMapping(value = "theme",produces = "application/json;UTF-8")
     public String getAllTheme(){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         jsonObject.put("dataList",courseService.getAllTheme());
         return jsonObject.toString();
     }
-    @GetMapping(value = "theme/{themeID}",produces = "application/json;UT8-8")
+    @GetMapping(value = "theme/{themeID}",produces = "application/json;UTF-8")
     public String getAllCourseByThemeID(@PathVariable() int themeID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
