@@ -1,9 +1,7 @@
 package com.adweb.adweb.dao;
 
-import com.adweb.adweb.entity.Course;
-import com.adweb.adweb.entity.CourseSelection;
-import com.adweb.adweb.entity.CourseSelectionExample;
-import com.adweb.adweb.entity.CourseSelectionKey;
+import com.adweb.adweb.entity.*;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,4 +29,5 @@ public interface CourseSelectionDao {
     int updateByPrimaryKey(CourseSelection record);
 
     List<Course> getMyCourse(String studentID);
+    void add(Choose_course choose_course);
 }

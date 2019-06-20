@@ -3,6 +3,8 @@ package com.adweb.adweb.dao;
 import com.adweb.adweb.entity.ChoiceQuestion;
 import com.adweb.adweb.entity.ChoiceQuestionExample;
 import java.util.List;
+
+import com.adweb.adweb.entity.Choose_course;
 import org.apache.ibatis.annotations.Param;
 
 public interface ChoiceQuestionDao {
@@ -31,4 +33,5 @@ public interface ChoiceQuestionDao {
     List<ChoiceQuestion> getHomeworkBySectionID(int sectionID);
 
 //    List<ChoiceQuestion> getHomeworkBySectionIDAndStudentID();
+
 }

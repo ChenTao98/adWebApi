@@ -4,6 +4,7 @@ import com.adweb.adweb.JsonUtil.JsonUtils;
 import com.adweb.adweb.JsonUtil.MyJson;
 import com.adweb.adweb.entity.Course;
 import com.adweb.adweb.service.CourseService;
+import com.adweb.adweb.service.StudentService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,8 @@ import java.util.List;
 public class CourseController {
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private StudentService studentService;
     //选课
     @RequestMapping(value = "taked/",method = RequestMethod.PUT,produces = "application/json;utf-8")
     public String course_selection(@RequestParam("courseId") int courseId,@RequestHeader(name="openID") String studentID){
@@ -25,6 +28,7 @@ public class CourseController {
         courseService.course_selection(studentID,courseId);
         return jsonObject.toString();
     }
+    //获取分类课程
     @GetMapping(value = "type/{typeName}",produces = "application/json;UTF-8")
     public String getCourseByType(@PathVariable() String typeName){
         JSONObject jsonObject=new MyJson();
@@ -33,6 +37,7 @@ public class CourseController {
         jsonObject.put("dataList",list);
         return jsonObject.toString();
     }
+    //获取课程分类
     @GetMapping(value = "type",produces = "application/json;UTF-8")
     public String getAllType(){
         JSONObject jsonObject=new MyJson();
@@ -68,6 +73,13 @@ public class CourseController {
 //        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID));
 //        return jsonObject.toString();
 //    }
+    @GetMapping(value = "taked",produces = "application/json;UTF-8")
+    public String getMyCourse(@RequestHeader(name="openID") String studentID){
+        JSONObject jsonObject=new MyJson();
+        JsonUtils.setSuccess(jsonObject);
+        jsonObject.put("dataList",studentService.getMyCourse(studentID));
+        return jsonObject.toString();
+    }
 
 
 }

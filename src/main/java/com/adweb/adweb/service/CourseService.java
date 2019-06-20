@@ -17,4 +17,6 @@ public interface CourseService {
     List<Theme> getAllTheme();
     List<Course> getCourseByThemeID(int themeID);
 
+    void course_selection(String studentId,int courseId);
+
 }

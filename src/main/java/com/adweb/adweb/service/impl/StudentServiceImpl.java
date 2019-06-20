@@ -3,6 +3,7 @@ package com.adweb.adweb.service.impl;
 import com.adweb.adweb.dao.CourseSelectionDao;
 import com.adweb.adweb.dao.StudentDao;
 import com.adweb.adweb.entity.Course;
+import com.adweb.adweb.entity.Student;
 import com.adweb.adweb.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private CourseSelectionDao courseSelectionDao;
     @Override
-    public Integer getMyCredit(String studentID){
-        return studentDao.getMyCredit(studentID);
+    public Student getStuInfo(String studentID){
+        return studentDao.selectByPrimaryKey(studentID);
     }
     @Override
     public List<Course> getMyCourse(String studentID){

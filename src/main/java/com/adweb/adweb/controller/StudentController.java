@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-
+//1.获取学生信息
     @GetMapping(value = "",produces = "application/json;UT8-8")
     public String getMyCredit(@RequestHeader(name="openID") String studentID){
         JSONObject jsonObject=new MyJson();
@@ -24,11 +24,5 @@ public class StudentController {
         jsonObject.put("data",stu);
         return jsonObject.toString();
     }
-    @GetMapping(value = "course/{studentID}",produces = "application/json;UT8-8")
-    public String getMyCourse(@PathVariable() String studentID){
-        JSONObject jsonObject=new MyJson();
-        JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",studentService.getMyCourse(studentID));
-        return jsonObject.toString();
-    }
+
 }

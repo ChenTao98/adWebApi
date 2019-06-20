@@ -22,6 +22,17 @@ public class CourseSelection extends CourseSelectionKey implements Serializable 
      */
     private Integer sectionId;
 
+    public String getStudent_id() {
+        return student_id;
+    }
+
+    public int getCourse_id() {
+        return course_id;
+    }
+
+    private String student_id;
+    private int course_id;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getStatus() {

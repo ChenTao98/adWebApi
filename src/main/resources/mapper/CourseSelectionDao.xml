@@ -8,6 +8,24 @@
     <result column="chapter" jdbcType="INTEGER" property="chapter" />
     <result column="section_id" jdbcType="INTEGER" property="sectionId" />
   </resultMap>
+
+  <insert id="insert" keyColumn="student_id" keyProperty="studentId" parameterType="com.adweb.adweb.entity.CourseSelection" useGeneratedKeys="true">
+    insert into course_selection (course_id, status, chapter,
+      section_id,student_id)
+    values (#{courseId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{chapter,jdbcType=INTEGER},
+      #{sectionId,jdbcType=INTEGER},#{student_id,jdbcType=VARCHAR})
+  </insert>
+
+
+  <insert id="add" parameterType="com.adweb.adweb.entity.Choose_course" useGeneratedKeys="true">
+    insert into course_selection (course_id, status, chapter,
+      section_id,student_id)
+    values (#{course_id,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{chapter,jdbcType=INTEGER},
+      #{section_id,jdbcType=INTEGER},#{student_id,jdbcType=VARCHAR})
+  </insert>
+
+
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -142,12 +160,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="student_id" keyProperty="studentId" parameterType="com.adweb.adweb.entity.CourseSelection" useGeneratedKeys="true">
-    insert into course_selection (course_id, `status`, chapter, 
-      section_id)
-    values (#{courseId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{chapter,jdbcType=INTEGER}, 
-      #{sectionId,jdbcType=INTEGER})
-  </insert>
+<!--  <insert id="insert" keyColumn="student_id" keyProperty="studentId" parameterType="com.adweb.adweb.entity.CourseSelection" useGeneratedKeys="true">-->
+<!--    insert into course_selection (course_id, `status`, chapter, -->
+<!--      section_id)-->
+<!--    values (#{courseId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{chapter,jdbcType=INTEGER}, -->
+<!--      #{sectionId,jdbcType=INTEGER})-->
+<!--  </insert>-->
   <insert id="insertSelective" keyColumn="student_id" keyProperty="studentId" parameterType="com.adweb.adweb.entity.CourseSelection" useGeneratedKeys="true">
     insert into course_selection
     <trim prefix="(" suffix=")" suffixOverrides=",">
