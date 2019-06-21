@@ -8,21 +8,11 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-#  redis:
-#    database: 0
-#    host: localhost
-#    port: 6379
-#    password:
-#    jedis:
-#      pool:
-#        max-active: 8
-#        max-wait: -1ms
-#        max-idle: 8
-#        min-idle: 0
-#    timeout: 5000ms
   resources:
-    #    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/home/adweb/peoject
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:F:/adweb/
+    # 部署环境
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/root/ADCourse/static
+    # 开发环境
+    # static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:F:/adweb/
 
 
 mybatis:
@@ -32,4 +22,4 @@ logging:
   level:
     com.adweb.adweb.dao: DEBUG
 server:
-  port: 8080
+  port: 18081

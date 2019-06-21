@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class SectionController {
     @Autowired
     private KnowledgeService knowledgeService;
+    
     @Autowired
     private HomeworkService homeworkService;
     //9获得小节所有知识点
@@ -29,7 +30,7 @@ public class SectionController {
     public String course_selection(@PathVariable() int section_id,@RequestHeader("openId") String open_id){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",homeworkService.getHomeworkBySectionID(section_id,open_id));
+        jsonObject.put("dataList",homeworkService.getHomeworkBySectionID(section_id, open_id));
 
         return jsonObject.toString();
     }

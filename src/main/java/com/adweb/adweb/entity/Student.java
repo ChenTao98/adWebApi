@@ -34,6 +34,14 @@ public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Student(String openId, String name, String email, String sex, Integer revisedCredits) {
+        this.openId = openId;
+        this.name = name;
+        this.email = email;
+        this.sex = sex;
+        this.revisedCredits = revisedCredits;
+    }
+
     public String getOpenId() {
         return openId;
     }

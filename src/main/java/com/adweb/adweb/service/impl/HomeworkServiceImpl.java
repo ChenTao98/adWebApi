@@ -22,17 +22,17 @@ public class HomeworkServiceImpl implements HomeworkService {
     OptionDao optionDao;
     @Autowired
     QuestionAnswerDao questionAnswerDao;
+
     @Override
-    public List<ChoiceQuestion> getHomeworkBySectionID(int sectionID,String openID){
+    public List<ChoiceQuestion> getHomeworkBySectionID(int sectionID, String openID) {
         List<ChoiceQuestion> questions = choiceQuestionDao.selectHomeworkBySectionID(sectionID);
-        for(int i=0;i<questions.size();i++){
+        for (int i = 0; i < questions.size(); i++) {
             List<Option> optionList = optionDao.selectOptionByQuestionID(questions.get(i).getId());
             questions.get(i).setOptionList(optionList);
             questions.get(i).setOpenId(openID);
-            int answerId  = questionAnswerDao.selectOptionIDByStuAndQues(new QuestionAndStudent(openID,questions.get(i).getId()));
+            int answerId = questionAnswerDao.selectOptionIDByStuAndQues(new QuestionAndStudent(openID, questions.get(i).getId()));
             questions.get(i).setAnswerId(answerId);
         }
-        return  questions;
+        return questions;
     }
-
 }

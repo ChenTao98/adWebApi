@@ -70,7 +70,20 @@
     open_id, `name`, email, sex, revised_credits
   </sql>
 
+  <select id="judgeStudent" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from `student` where open_id = #{open_id,jdbcType=VARCHAR};
+  </select>
 
+  <select id="addStudent" parameterType="com.adweb.adweb.entity.Student" >
+    insert into student (open_id, `name`, email,
+      sex,revised_credits)
+    values (#{openId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+      #{sex,jdbcType=VARCHAR},#{revisedCredits,jdbcType=INTEGER})
+  </select>
+
+  <select id="updateStudent" parameterType="com.adweb.adweb.entity.Student" >
+       UPDATE student SET `name`=#{name,jdbcType=VARCHAR},email=#{email,jdbcType=VARCHAR},sex=#{sex,jdbcType=VARCHAR} WHERE open_id=#{openId,jdbcType=VARCHAR}
+  </select>
 
 
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.StudentExample" resultMap="BaseResultMap">

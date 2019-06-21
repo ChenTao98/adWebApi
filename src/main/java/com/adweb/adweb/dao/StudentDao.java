@@ -29,4 +29,10 @@ public interface StudentDao {
     int updateByPrimaryKey(Student record);
 
     int getMyCredit(String studentID);
+
+    void addStudent(Student student);
+
+    void updateStudent(Student student);
+
+    int judgeStudent(String open_id);
 }
