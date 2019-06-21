@@ -57,18 +57,7 @@ public class CourseServiceImpl implements CourseService {
             taked = true;
         }
         if(taked){
-            //Ct修改
-            Integer integer=courseDao.findLatestSectionId(id,student_id);
-            if(integer==null){
-                if(course.getChapterList().size()==0||course.getChapterList().get(0).getSectionList().size()==0){
-                    lastestSectionId=-1;
-                }else {
-                    lastestSectionId=course.getChapterList().get(0).getSectionList().get(0).getId();
-                }
-            }else {
-                lastestSectionId=integer;
-            }
-//             lastestSectionId = courseDao.findLatestSectionId(id,student_id);
+             lastestSectionId = courseDao.findLatestSectionId(id,student_id);
         }else{
             lastestSectionId = -1;
         }
@@ -101,9 +90,7 @@ public class CourseServiceImpl implements CourseService {
                 taked = true;
             }
             if(taked){
-                //CT修改
-                lastestSectionId=-1;
-//                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
+                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
             }else{
                 lastestSectionId = -1;
             }
@@ -117,7 +104,7 @@ public class CourseServiceImpl implements CourseService {
     }
     @Override
     public void course_selection(String studentId,int courseId){
-        Choose_course choose_course  = new Choose_course(0,0,0,studentId,courseId);
+        Choose_course choose_course  = new Choose_course(0,0,-1,studentId,courseId);
 
         courseSelectionDao.add(choose_course);
     }
@@ -149,18 +136,7 @@ public class CourseServiceImpl implements CourseService {
                     taked = true;
                 }
                 if(taked){
-                    //CT修改
-                    Integer integer= courseDao.findLatestSectionId(list2.get(j).getId(),student_id);
-                    if(integer==null){
-                        if(list2.get(j).getChapterList().size()==0||list2.get(j).getChapterList().get(0).getSectionList().size()==0){
-                            lastestSectionId=-1;
-                        }else {
-                            lastestSectionId=list2.get(j).getChapterList().get(0).getSectionList().get(0).getId();
-                        }
-                    }else {
-                        lastestSectionId=integer;
-                    }
-                    //                    lastestSectionId = courseDao.findLatestSectionId(list2.get(j).getId(),student_id);
+                    lastestSectionId = courseDao.findLatestSectionId(list2.get(j).getId(),student_id);
                 }else{
                     lastestSectionId = -1;
                 }
@@ -190,18 +166,7 @@ public class CourseServiceImpl implements CourseService {
                 taked = true;
             }
             if(taked){
-                //CT修改
-                Integer integer= courseDao.findLatestSectionId(list.get(i).getId(),student_id);
-                if(integer==null){
-                    if(list.get(i).getChapterList().size()==0||list.get(i).getChapterList().get(0).getSectionList().size()==0){
-                        lastestSectionId=-1;
-                    }else {
-                        lastestSectionId=list.get(i).getChapterList().get(0).getSectionList().get(0).getId();
-                    }
-                }else {
-                    lastestSectionId=integer;
-                }
-//                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
+                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
             }else{
                 lastestSectionId = -1;
             }

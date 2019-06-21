@@ -42,7 +42,7 @@ public interface CourseDao {
     //Ct修改
     int judgeTaked(@Param("course_id") int course_id, @Param("student_id") String student_id);
 
-    Integer findLatestSectionId(@Param("course_id")int course_id, @Param("student_id")String student_id);
+    int findLatestSectionId(@Param("course_id")int course_id, @Param("student_id")String student_id);
 
     int getCredit(int course_id);
 
