@@ -2,10 +2,16 @@ package com.adweb.adweb.entity.homeworkEntity;
 
 public class QuestionAnswer {
     QuestionAnswer(){}
-    public QuestionAnswer(String open_id, int question_id, int answer_id) {
+
+
+    String open_id;
+    int question_id;
+    int option_id;
+
+    public QuestionAnswer(String open_id, int question_id, int option_id) {
         this.open_id = open_id;
         this.question_id = question_id;
-        this.answer_id = answer_id;
+        this.option_id = option_id;
     }
 
     public String getOpen_id() {
@@ -24,15 +30,11 @@ public class QuestionAnswer {
         this.question_id = question_id;
     }
 
-    public int getAnswer_id() {
-        return answer_id;
+    public int getOption_id() {
+        return option_id;
     }
 
-    public void setAnswer_id(int answer_id) {
-        this.answer_id = answer_id;
+    public void setOption_id(int option_id) {
+        this.option_id = option_id;
     }
-
-    String open_id;
-    int question_id;
-    int answer_id;
 }

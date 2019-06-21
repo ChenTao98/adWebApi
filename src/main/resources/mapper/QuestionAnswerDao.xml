@@ -74,9 +74,9 @@
 
 
 
-  <select id="add" parameterType="com.adweb.adweb.entity.homeworkEntity.QuestionAnswer" >
+  <select id="addAnswer" parameterType="com.adweb.adweb.entity.homeworkEntity.QuestionAnswer">
       insert into question_answer (question_id, option_id,student_id)
-  values (#{question_id,jdbcType=INTEGER}, #{open_id,jdbcType=INTEGER},#{open_id,jdbcType=VARCHAR})
+  values (#{question_id,jdbcType=INTEGER}, #{option_id,jdbcType=INTEGER},#{open_id,jdbcType=VARCHAR})
 </select>
 
 

@@ -70,7 +70,7 @@
     id, `name`, summary, order_number, course_id
   </sql>
 
-  <select id="findMaxChapterID" parameterType="java.lang.Integer" resultMap="java.lang.Integer">
+  <select id="findMaxChapterID" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     select id from `chapter` where course_id =#{course_id,jdbcType=INTEGER} order by order_number desc limit 0,1
   </select>
 

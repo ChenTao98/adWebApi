@@ -17,7 +17,7 @@
       </select>
 
     <select id="getCredit" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-    select credit from course where  course_id=#{course_id,jdbcType=INTEGER}
+    select credit from course where  id=#{course_id,jdbcType=INTEGER}
       </select>
 
 

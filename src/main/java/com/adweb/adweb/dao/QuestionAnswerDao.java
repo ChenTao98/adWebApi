@@ -27,5 +27,5 @@ public interface QuestionAnswerDao {
 
     int selectOptionIDByStuAndQues(QuestionAndStudent questionAndStudent);
 
-    void add(QuestionAnswer questionAnswer);
+    void addAnswer(QuestionAnswer questionAnswer);
 }

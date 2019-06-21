@@ -78,6 +78,9 @@
         update student set revised_credits = #{credit,jdbcType=INTEGER} where open_id = #{open_id,jdbcType=VARCHAR}
   </select>
 
+  <select id="getMyCredit" parameterType="java.lang.String" resultType="java.lang.Integer" >
+        select  revised_credits from student where open_id = #{student_id,jdbcType=VARCHAR}
+  </select>
 
   <select id="addStudent" parameterType="com.adweb.adweb.entity.Student" >
     insert into student (open_id, `name`, email,

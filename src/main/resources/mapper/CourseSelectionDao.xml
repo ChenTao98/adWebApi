@@ -17,7 +17,7 @@
   </insert>
 
   <insert id="update" parameterType="com.adweb.adweb.entity.homeworkEntity.Course_Selection" >
-    update course_selection SET status =#{course_id,jdbcType=INTEGER},chapter_id =#{chapter_id,jdbcType=INTEGER},section_id =#{section_id,jdbcType=INTEGER}
+    update course_selection SET status =#{status,jdbcType=INTEGER},chapter =#{chapter_id,jdbcType=INTEGER},section_id =#{section_id,jdbcType=INTEGER}
     where student_id =#{open_id,jdbcType=VARCHAR} and course_id=#{course_id,jdbcType=INTEGER}
 
   </insert>

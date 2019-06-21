@@ -9,6 +9,7 @@ import com.adweb.adweb.service.HomeworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,11 +47,20 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
     @Override
     public void commit(HomeworkCommit homeworkCommit){
+        String open_id = homeworkCommit.getOpenId();
+        int course_id = homeworkCommit.getCourseId();
+        int chapter_id = homeworkCommit.getChapterId();
+        int section_id = homeworkCommit.getSectionId();
+        ArrayList<QuestionCommit> questionCommits =homeworkCommit.getAnswerList();
         for (int i=0;i<homeworkCommit.getAnswerList().size();i++){
-            questionAnswerDao.add(new QuestionAnswer(homeworkCommit.getOpenId(),homeworkCommit.getAnswerList().get(i).getQuestionId(),homeworkCommit.getAnswerList().get(i).getAnswerId()));
+            System.out.println(open_id);
+            System.out.println(questionCommits.get(i).getAnswerId());
+            questionAnswerDao.addAnswer(new QuestionAnswer(open_id,questionCommits.get(i).getQuestionId(),questionCommits.get(i).getAnswerId()));
         }
         int max_chapter_id = chapterDao.findMaxChapterID(homeworkCommit.getCourseId());
         int max_section_id = sectionDao.findMaxSectionID(max_chapter_id);
+        System.out.println(max_chapter_id);
+        System.out.println(max_section_id);
         if(max_chapter_id== homeworkCommit.getChapterId() && max_section_id == homeworkCommit.getSectionId()){
             courseSelectionDao.update(new Course_Selection(homeworkCommit.getCourseId(),homeworkCommit.getOpenId(),1,homeworkCommit.getChapterId(),homeworkCommit.getSectionId()));
             int credits = studentDao.getMyCredit(homeworkCommit.getOpenId());

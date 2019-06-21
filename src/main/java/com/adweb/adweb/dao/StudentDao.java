@@ -30,7 +30,7 @@ public interface StudentDao {
 
     int updateByPrimaryKey(Student record);
 
-    int getMyCredit(String studentID);
+    int getMyCredit(String student_id);
 
     void addStudent(Student student);
 
