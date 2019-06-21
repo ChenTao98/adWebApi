@@ -2,6 +2,7 @@ package com.adweb.adweb.controller;
 
 import com.adweb.adweb.JsonUtil.JsonUtils;
 import com.adweb.adweb.JsonUtil.MyJson;
+import com.adweb.adweb.entity.HomeworkCommit;
 import com.adweb.adweb.service.HomeworkService;
 import com.adweb.adweb.service.KnowledgeService;
 import com.alibaba.fastjson.JSONObject;
@@ -30,8 +31,17 @@ public class SectionController {
     public String course_selection(@PathVariable() int section_id,@RequestHeader("openId") String open_id){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",homeworkService.getHomeworkBySectionID(section_id, open_id));
+        System.out.println();
+        jsonObject.put("data",homeworkService.getHomeworkBySectionID(section_id, open_id));
 
+        return jsonObject.toString();
+    }
+    //提交作业
+    @PostMapping(value = "{section_id}/question",produces = "application/json;utf-8")
+    public String course_selection(@RequestBody HomeworkCommit homeworkCommit){
+        JSONObject jsonObject=new MyJson();
+        JsonUtils.setSuccess(jsonObject);
+        homeworkService.commit(homeworkCommit);
         return jsonObject.toString();
     }
 

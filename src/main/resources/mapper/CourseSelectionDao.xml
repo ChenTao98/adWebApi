@@ -16,6 +16,17 @@
       #{sectionId,jdbcType=INTEGER},#{student_id,jdbcType=VARCHAR})
   </insert>
 
+  <insert id="update" parameterType="com.adweb.adweb.entity.homeworkEntity.Course_Selection" >
+    update course_selection SET status =#{status,jdbcType=INTEGER},chapter =#{chapter_id,jdbcType=INTEGER},section_id =#{section_id,jdbcType=INTEGER}
+    where student_id =#{open_id,jdbcType=VARCHAR} and course_id=#{course_id,jdbcType=INTEGER}
+
+  </insert>
+
+  <select id="courseNumber" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(*) from course_selection where student_id=#{student_id,jdbcType=VARCHAR}
+  </select>
+
+
 
   <insert id="add" parameterType="com.adweb.adweb.entity.Choose_course" useGeneratedKeys="true">
     insert into course_selection (course_id, status, chapter,

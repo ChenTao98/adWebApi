@@ -3,6 +3,8 @@ package com.adweb.adweb.dao;
 import com.adweb.adweb.entity.Student;
 import com.adweb.adweb.entity.StudentExample;
 import java.util.List;
+
+import com.adweb.adweb.entity.homeworkEntity.Update_credit;
 import org.apache.ibatis.annotations.Param;
 
 public interface StudentDao {
@@ -28,5 +30,13 @@ public interface StudentDao {
 
     int updateByPrimaryKey(Student record);
 
-    int getMyCredit(String studentID);
+    int getMyCredit(String student_id);
+
+    void addStudent(Student student);
+
+    void updateStudent(Student student);
+
+    int judgeStudent(String open_id);
+
+    void updateCredit(Update_credit update_credit);
 }

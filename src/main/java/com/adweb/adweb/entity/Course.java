@@ -44,6 +44,16 @@ public class Course implements Serializable {
      */
     private String imageSrc;
 
+    public String getTeacherAvatar() {
+        return teacherAvatar;
+    }
+
+    public void setTeacherAvatar(String teacherAvatar) {
+        this.teacherAvatar = teacherAvatar;
+    }
+
+    private String teacherAvatar;
+
     /**
      * 学分数
      */

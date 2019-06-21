@@ -70,7 +70,7 @@
   </sql>
 
   <select id="selectHomeworkBySectionID" parameterType="java.lang.Integer" resultType="com.adweb.adweb.entity.ChoiceQuestion">
-        select answer_key as answerKey,section_id as sectionId,content,id from choice_question where section_id =#{section_id,jdbcType=INTEGER}
+        select answer_key as solution,section_id as sectionId,content,id from choice_question where section_id =#{section_id,jdbcType=INTEGER}
   </select>
 
 

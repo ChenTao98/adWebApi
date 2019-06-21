@@ -27,7 +27,7 @@ public class ChoiceQuestion implements Serializable {
     /**
      * 答案解析
      */
-    private String answerKey;
+    private String solution;
 
 
     public List<Option> getOptionList() {
@@ -86,12 +86,12 @@ public class ChoiceQuestion implements Serializable {
         this.content = content;
     }
 
-    public String getAnswerKey() {
-        return answerKey;
+    public String getSolution() {
+        return solution;
     }
 
-    public void setAnswerKey(String answerKey) {
-        this.answerKey = answerKey;
+    public void setSolution(String solution) {
+        this.solution = solution;
     }
 
 
@@ -121,8 +121,8 @@ public class ChoiceQuestion implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getSectionId() == null ? other.getSectionId() == null : this.getSectionId().equals(other.getSectionId()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
-            && (this.getAnswerKey() == null ? other.getAnswerKey() == null : this.getAnswerKey().equals(other.getAnswerKey()));
-    }
+            && (this.getSolution() == null ? other.getSolution() == null : this.getSolution().equals(other.getSolution()));
+}
 
     @Override
     public int hashCode() {
@@ -131,7 +131,7 @@ public class ChoiceQuestion implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getSectionId() == null) ? 0 : getSectionId().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
-        result = prime * result + ((getAnswerKey() == null) ? 0 : getAnswerKey().hashCode());
+        result = prime * result + ((getSolution() == null) ? 0 : getSolution().hashCode());
         return result;
     }
 
@@ -144,7 +144,7 @@ public class ChoiceQuestion implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", sectionId=").append(sectionId);
         sb.append(", content=").append(content);
-        sb.append(", answerKey=").append(answerKey);
+        sb.append(", solution=").append(solution);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

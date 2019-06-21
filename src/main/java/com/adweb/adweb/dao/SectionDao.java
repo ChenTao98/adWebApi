@@ -3,6 +3,7 @@ package com.adweb.adweb.dao;
 import com.adweb.adweb.entity.Section;
 import com.adweb.adweb.entity.SectionExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SectionDao {
@@ -27,4 +28,8 @@ public interface SectionDao {
     int updateByPrimaryKeySelective(Section record);
 
     int updateByPrimaryKey(Section record);
+
+    int findMaxSectionID(int chapterID);
+
+    int getChapterIdBySectionId(int section_id);
 }
