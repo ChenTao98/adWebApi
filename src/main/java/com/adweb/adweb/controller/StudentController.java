@@ -18,12 +18,24 @@ public class StudentController {
     private StudentService studentService;
 //1.获取学生信息
     @GetMapping(value = "",produces = "application/json;UTF-8")
-    public String getMyCredit(@RequestHeader(name="openId") String studentID){
+    public String getStuInfo(@RequestHeader(name="openId") String studentID){
+        Student stu;
+        try{
+            stu=studentService.getStuInfo(studentID);
+        }catch (Exception e){
+            JSONObject jsonObject=new MyJson();
+            jsonObject.put("errorCode",2001);
+            jsonObject.put("message","用户不存在");
+            return jsonObject.toString();
+        }
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        Student stu=studentService.getStuInfo(studentID);
         jsonObject.put("data",stu);
         return jsonObject.toString();
+
+
+
+
     }
     //更新学生信息
     @RequestMapping(value = "",method = RequestMethod.POST)
