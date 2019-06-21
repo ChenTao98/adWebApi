@@ -2,8 +2,9 @@ package com.adweb.adweb.dao;
 
 import com.adweb.adweb.entity.TeacherAvatar;
 import com.adweb.adweb.entity.TeacherAvatarExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TeacherAvatarDao {
     long countByExample(TeacherAvatarExample example);
