@@ -42,5 +42,7 @@ public interface CourseDao {
 
     int findLatestSectionId(int course_id,String student_id);
 
+    int getCredit(int course_id);
+
 
 }

@@ -69,6 +69,11 @@
   <sql id="Base_Column_List">
     id, `name`, summary, order_number, course_id
   </sql>
+
+  <select id="findMaxChapterID" parameterType="java.lang.Integer" resultMap="java.lang.Integer">
+    select id from `chapter` where course_id =#{course_id,jdbcType=INTEGER} order by order_number desc limit 0,1
+  </select>
+
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.ChapterExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

@@ -4,6 +4,8 @@ import com.adweb.adweb.entity.QuestionAndStudent;
 import com.adweb.adweb.entity.QuestionAnswerExample;
 import com.adweb.adweb.entity.QuestionAnswerKey;
 import java.util.List;
+
+import com.adweb.adweb.entity.homeworkEntity.QuestionAnswer;
 import org.apache.ibatis.annotations.Param;
 
 public interface QuestionAnswerDao {
@@ -24,4 +26,6 @@ public interface QuestionAnswerDao {
     int updateByExample(@Param("record") QuestionAnswerKey record, @Param("example") QuestionAnswerExample example);
 
     int selectOptionIDByStuAndQues(QuestionAndStudent questionAndStudent);
+
+    void add(QuestionAnswer questionAnswer);
 }

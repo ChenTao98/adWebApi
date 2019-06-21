@@ -3,6 +3,8 @@ package com.adweb.adweb.dao;
 import com.adweb.adweb.entity.*;
 
 import java.util.List;
+
+import com.adweb.adweb.entity.homeworkEntity.Course_Selection;
 import org.apache.ibatis.annotations.Param;
 
 public interface CourseSelectionDao {
@@ -32,4 +34,6 @@ public interface CourseSelectionDao {
     void add(Choose_course choose_course);
 
     int courseNumber(String student_id);
+
+    void update(Course_Selection course_selection);
 }

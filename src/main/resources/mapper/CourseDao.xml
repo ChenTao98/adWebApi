@@ -16,6 +16,10 @@
     select section_id from course_selection where student_id=#{student_id,jdbcType=VARCHAR} and course_id=#{course_id,jdbcType=INTEGER}
       </select>
 
+    <select id="getCredit" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select credit from course where  course_id=#{course_id,jdbcType=INTEGER}
+      </select>
+
 
 
     <resultMap id="ThemeCourseMap" type="com.adweb.adweb.entity.Course">

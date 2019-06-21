@@ -66,7 +66,7 @@ public class CourseController {
     public String getCourseById(@RequestHeader(name="openID") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("data",courseService.getAllCourseOrderByType(studentID));
+        jsonObject.put("dataList",courseService.getAllCourseOrderByType(studentID));
         return jsonObject.toString();
     }
     //8.获取分类课程
