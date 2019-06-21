@@ -30,8 +30,6 @@ public interface ChoiceQuestionDao {
 
     int updateByPrimaryKey(ChoiceQuestion record);
 
-    List<ChoiceQuestion> getHomeworkBySectionID(int sectionID);
 
-//    List<ChoiceQuestion> getHomeworkBySectionIDAndStudentID();
-
+    List<ChoiceQuestion> selectHomeworkBySectionID(int section_id);
 }

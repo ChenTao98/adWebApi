@@ -68,6 +68,11 @@
   <sql id="Base_Column_List">
     open_id, `name`, `password`, email
   </sql>
+
+  <select id="getNameById" resultType="java.lang.String" parameterType="java.lang.String">
+    select `name` from teacher where open_id=#{id,jdbcType=VARCHAR}
+      </select>
+
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.TeacherExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

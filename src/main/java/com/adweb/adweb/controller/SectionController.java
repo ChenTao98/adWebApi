@@ -27,7 +27,7 @@ public class SectionController {
     }
     //10获得小节的作业题
     @GetMapping(value = "{section_id}/question",produces = "application/json;utf-8")
-    public String course_selection(@PathVariable() int section_id,@RequestParam("openId") String open_id){
+    public String course_selection(@PathVariable() int section_id,@RequestHeader("openId") String open_id){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         jsonObject.put("dataList",homeworkService.getHomeworkBySectionID(section_id, open_id));

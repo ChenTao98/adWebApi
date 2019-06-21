@@ -9,4 +9,5 @@ import java.util.List;
 public interface StudentService {
     Student getStuInfo(String studentID);
     List<Course> getMyCourse(String studentID);
+    String getTeacherNameById(String open_id);
 }

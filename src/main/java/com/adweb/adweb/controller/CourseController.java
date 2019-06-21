@@ -69,20 +69,16 @@ public class CourseController {
         jsonObject.put("dataList",courseService.getAllTheme());
         return jsonObject.toString();
     }
+    //11.根据主题id获取主题所有子课程
     @GetMapping(value = "theme/{themeID}",produces = "application/json;UTF-8")
-    public String getAllCourseByThemeID(@PathVariable() int themeID){
+    public String getAllCourseByThemeID(@PathVariable() int themeID,@RequestHeader(name="openID") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID));
+        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID,studentID));
         return jsonObject.toString();
     }
-//    @PutMapping(value = "theme/{themeID}", produces = "application/json;UT8-8")
-//    public String getAllCourseByThemeID(@PathVariable() int themeID){
-//        JSONObject jsonObject=new MyJson();
-//        JsonUtils.setSuccess(jsonObject);
-//        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID));
-//        return jsonObject.toString();
-//    }
+
+
     //5.获取学生选课列表
     @GetMapping(value = "taked",produces = "application/json;UTF-8")
     public String getMyCourse(@RequestHeader(name="openID") String studentID){

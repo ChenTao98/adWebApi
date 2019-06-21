@@ -30,4 +30,5 @@ public class CollectionServiceImpl implements CollectionService {
     public boolean deleteCollection(CollectionKey record) {
         return collectionDao.deleteByPrimaryKey(record) == 1;
     }
+
 }
