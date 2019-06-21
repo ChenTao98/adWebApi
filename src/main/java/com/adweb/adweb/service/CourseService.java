@@ -21,4 +21,6 @@ public interface CourseService {
     void course_selection(String studentId,int courseId);
     List<Course> getCourseByTypeAndStu(String type,String student_id);
 
+    String getTeacherNameById(String open_id);
+
 }

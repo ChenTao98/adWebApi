@@ -27,4 +27,6 @@ public interface TeacherDao {
     int updateByPrimaryKeySelective(Teacher record);
 
     int updateByPrimaryKey(Teacher record);
+
+    String getNameById(String id);
 }

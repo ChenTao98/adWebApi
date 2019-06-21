@@ -66,6 +66,16 @@ public class Course implements Serializable {
 
     private Boolean taked;
 
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    private String teacherName;
+
     public Boolean getTaked() {
         return taked;
     }
