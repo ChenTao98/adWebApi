@@ -57,7 +57,18 @@ public class CourseServiceImpl implements CourseService {
             taked = true;
         }
         if(taked){
-             lastestSectionId = courseDao.findLatestSectionId(id,student_id);
+            //Ct修改
+            Integer integer=courseDao.findLatestSectionId(id,student_id);
+            if(integer==null){
+                if(course.getChapterList().size()==0||course.getChapterList().get(0).getSectionList().size()==0){
+                    lastestSectionId=-1;
+                }else {
+                    lastestSectionId=course.getChapterList().get(0).getSectionList().get(0).getId();
+                }
+            }else {
+                lastestSectionId=integer;
+            }
+//             lastestSectionId = courseDao.findLatestSectionId(id,student_id);
         }else{
             lastestSectionId = -1;
         }
@@ -90,7 +101,9 @@ public class CourseServiceImpl implements CourseService {
                 taked = true;
             }
             if(taked){
-                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
+                //CT修改
+                lastestSectionId=-1;
+//                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
             }else{
                 lastestSectionId = -1;
             }
@@ -136,7 +149,18 @@ public class CourseServiceImpl implements CourseService {
                     taked = true;
                 }
                 if(taked){
-                    lastestSectionId = courseDao.findLatestSectionId(list2.get(j).getId(),student_id);
+                    //CT修改
+                    Integer integer= courseDao.findLatestSectionId(list2.get(j).getId(),student_id);
+                    if(integer==null){
+                        if(list2.get(j).getChapterList().size()==0||list2.get(j).getChapterList().get(0).getSectionList().size()==0){
+                            lastestSectionId=-1;
+                        }else {
+                            lastestSectionId=list2.get(j).getChapterList().get(0).getSectionList().get(0).getId();
+                        }
+                    }else {
+                        lastestSectionId=integer;
+                    }
+                    //                    lastestSectionId = courseDao.findLatestSectionId(list2.get(j).getId(),student_id);
                 }else{
                     lastestSectionId = -1;
                 }
@@ -166,7 +190,18 @@ public class CourseServiceImpl implements CourseService {
                 taked = true;
             }
             if(taked){
-                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
+                //CT修改
+                Integer integer= courseDao.findLatestSectionId(list.get(i).getId(),student_id);
+                if(integer==null){
+                    if(list.get(i).getChapterList().size()==0||list.get(i).getChapterList().get(0).getSectionList().size()==0){
+                        lastestSectionId=-1;
+                    }else {
+                        lastestSectionId=list.get(i).getChapterList().get(0).getSectionList().get(0).getId();
+                    }
+                }else {
+                    lastestSectionId=integer;
+                }
+//                lastestSectionId = courseDao.findLatestSectionId(list.get(i).getId(),student_id);
             }else{
                 lastestSectionId = -1;
             }

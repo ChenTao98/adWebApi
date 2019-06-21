@@ -6,6 +6,7 @@ import com.adweb.adweb.entity.Course;
 import com.adweb.adweb.entity.CourseExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 
 public interface CourseDao {
     long countByExample(CourseExample example);
@@ -38,9 +39,10 @@ public interface CourseDao {
 
     List<Course> getCourseByThemeID(int themeID);
 
-    int judgeTaked(int course_id,String student_id);
+    //Ct修改
+    int judgeTaked(@Param("course_id") int course_id, @Param("student_id") String student_id);
 
-    int findLatestSectionId(int course_id,String student_id);
+    Integer findLatestSectionId(@Param("course_id")int course_id, @Param("student_id")String student_id);
 
     int getCredit(int course_id);
 
