@@ -66,6 +66,11 @@
   <sql id="Base_Column_List">
     teacher_id, image_src
   </sql>
+
+  <select id="getAvatarByID" parameterType="java.lang.String" resultType="java.lang.String">
+    select image_src from `teacher_avatar` where teacher_id =#{id,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByExample" parameterType="com.adweb.adweb.entity.TeacherAvatarExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

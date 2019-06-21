@@ -2,6 +2,7 @@ package com.adweb.adweb.service.impl;
 
 import com.adweb.adweb.dao.CourseSelectionDao;
 import com.adweb.adweb.dao.StudentDao;
+import com.adweb.adweb.dao.TeacherAvatarDao;
 import com.adweb.adweb.dao.TeacherDao;
 import com.adweb.adweb.entity.Course;
 import com.adweb.adweb.entity.Student;
@@ -12,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.adweb.adweb.utils.PathUtil.COURSE_IMAGE_HTML;
+import static com.adweb.adweb.utils.PathUtil.TEACHER_IMAGE_HTML;
+
 @Service
 public class StudentServiceImpl implements StudentService {
     @Autowired
@@ -20,6 +25,8 @@ public class StudentServiceImpl implements StudentService {
     private CourseSelectionDao courseSelectionDao;
     @Autowired
     private TeacherDao teacherDao;
+    @Autowired
+    private TeacherAvatarDao teacherAvatarDao;
     @Override
     public Student getStuInfo(String studentID){
         Student student = studentDao.selectByPrimaryKey(studentID);
@@ -29,11 +36,13 @@ public class StudentServiceImpl implements StudentService {
     }
     @Override
     public List<Course> getMyCourse(String studentID){
-        List<Course> courses = courseSelectionDao.getMyCourse(studentID);
-        for (int i=0;i<courses.size();i++){
-            courses.get(i).setTeacherName(getTeacherNameById(courses.get(i).getTeacherId()));
+        List<Course> list = courseSelectionDao.getMyCourse(studentID);
+        for (int i=0;i<list.size();i++){
+            list.get(i).setTeacherName(getTeacherNameById(list.get(i).getTeacherId()));
+            list.get(i).setImageSrc(COURSE_IMAGE_HTML+list.get(i).getImageSrc());
+            list.get(i).setTeacherAvatar(TEACHER_IMAGE_HTML+teacherAvatarDao.getAvatarByID(list.get(i).getTeacherId()));
         }
-        return courses;
+        return list;
     }
 
     @Override

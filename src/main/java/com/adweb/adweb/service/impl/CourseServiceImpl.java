@@ -2,10 +2,7 @@ package com.adweb.adweb.service.impl;
 
 import com.adweb.adweb.JSONBean.course.CourseThemeJSONBean;
 import com.adweb.adweb.JSONBean.course.CourseTypeJSONBean;
-import com.adweb.adweb.dao.CourseDao;
-import com.adweb.adweb.dao.CourseSelectionDao;
-import com.adweb.adweb.dao.TeacherDao;
-import com.adweb.adweb.dao.ThemeDao;
+import com.adweb.adweb.dao.*;
 import com.adweb.adweb.entity.*;
 import com.adweb.adweb.service.CourseService;
 import com.alibaba.fastjson.JSONObject;
@@ -14,6 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.adweb.adweb.utils.PathUtil.COURSE_IMAGE_HTML;
+import static com.adweb.adweb.utils.PathUtil.TEACHER_IMAGE_HTML;
+
 @Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
@@ -24,6 +25,8 @@ public class CourseServiceImpl implements CourseService {
     private ThemeDao themeDao;
     @Autowired
     private TeacherDao teacherDao;
+    @Autowired
+    private TeacherAvatarDao teacherAvatarDao;
     @Override
     public List<Course> getCourseByType(String type) {
         CourseExample courseExample=new CourseExample();
@@ -60,13 +63,18 @@ public class CourseServiceImpl implements CourseService {
 
         course.setTaked(taked);
         course.setLastestSectionId(lastestSectionId);
+        course.setImageSrc(COURSE_IMAGE_HTML+course.getImageSrc());
+        course.setTeacherAvatar(TEACHER_IMAGE_HTML+teacherAvatarDao.getAvatarByID(course.getTeacherId()));
         return course;
     }
 
     @Override
     public List<Theme> getAllTheme() {
-
-        return themeDao.selectByExample(new ThemeExample());
+        List<Theme> list = themeDao.selectByExample(new ThemeExample());
+        for(int i=0;i<list.size();i++){
+            list.get(i).setImageUrl(COURSE_IMAGE_HTML+list.get(i).getImageUrl());
+        }
+        return list;
     }
     @Override
     public List<Course> getCourseByThemeID(int themeID,String student_id ) {
@@ -87,6 +95,8 @@ public class CourseServiceImpl implements CourseService {
             list.get(i).setTeacherName(teacherName);
             list.get(i).setTaked(taked);
             list.get(i).setLastestSectionId(lastestSectionId);
+            list.get(i).setImageSrc(COURSE_IMAGE_HTML+list.get(i).getImageSrc());
+            list.get(i).setTeacherAvatar(TEACHER_IMAGE_HTML+teacherAvatarDao.getAvatarByID(list.get(i).getTeacherId()));
         }
         return list;
     }
@@ -123,6 +133,8 @@ public class CourseServiceImpl implements CourseService {
                 list2.get(j).setTeacherName(teacherName);
                 list2.get(j).setTaked(taked);
                 list2.get(j).setLastestSectionId(lastestSectionId);
+                list2.get(j).setImageSrc(COURSE_IMAGE_HTML+list2.get(j).getImageSrc());
+                list2.get(j).setTeacherAvatar(TEACHER_IMAGE_HTML+teacherAvatarDao.getAvatarByID(list2.get(j).getTeacherId()));
             }
             jsonObject.put("courseList",list2);
             list.add(jsonObject);
@@ -151,6 +163,8 @@ public class CourseServiceImpl implements CourseService {
             list.get(i).setTeacherName(teacherName);
             list.get(i).setTaked(taked);
             list.get(i).setLastestSectionId(lastestSectionId);
+            list.get(i).setImageSrc(COURSE_IMAGE_HTML+list.get(i).getImageSrc());
+            list.get(i).setTeacherAvatar(TEACHER_IMAGE_HTML+teacherAvatarDao.getAvatarByID(list.get(i).getTeacherId()));
         }
         return list;
     }

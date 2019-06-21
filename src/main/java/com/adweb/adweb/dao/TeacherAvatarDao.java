@@ -20,4 +20,6 @@ public interface TeacherAvatarDao {
     int updateByExampleSelective(@Param("record") TeacherAvatar record, @Param("example") TeacherAvatarExample example);
 
     int updateByExample(@Param("record") TeacherAvatar record, @Param("example") TeacherAvatarExample example);
+
+    String getAvatarByID(String id);
 }
