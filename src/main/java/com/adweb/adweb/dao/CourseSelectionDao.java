@@ -30,4 +30,6 @@ public interface CourseSelectionDao {
 
     List<Course> getMyCourse(String studentID);
     void add(Choose_course choose_course);
+
+    int courseNumber(String student_id);
 }

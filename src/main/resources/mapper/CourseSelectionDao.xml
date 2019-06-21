@@ -16,6 +16,11 @@
       #{sectionId,jdbcType=INTEGER},#{student_id,jdbcType=VARCHAR})
   </insert>
 
+  <select id="courseNumber" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(*) from course_selection where student_id=#{student_id,jdbcType=VARCHAR}
+  </select>
+
+
 
   <insert id="add" parameterType="com.adweb.adweb.entity.Choose_course" useGeneratedKeys="true">
     insert into course_selection (course_id, status, chapter,

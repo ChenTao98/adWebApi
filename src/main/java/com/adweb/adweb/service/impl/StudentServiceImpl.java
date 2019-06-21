@@ -22,7 +22,10 @@ public class StudentServiceImpl implements StudentService {
     private TeacherDao teacherDao;
     @Override
     public Student getStuInfo(String studentID){
-        return studentDao.selectByPrimaryKey(studentID);
+        Student student = studentDao.selectByPrimaryKey(studentID);
+        student.setCourses(courseSelectionDao.courseNumber(studentID));
+
+        return student;
     }
     @Override
     public List<Course> getMyCourse(String studentID){
