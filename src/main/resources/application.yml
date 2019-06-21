@@ -14,9 +14,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   resources:
     # 部署环境
-    # static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/root/ADCourse/static/
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/root/ADCourse/static/
     # 开发环境
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:F:/adweb/
+    # static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:F:/adweb/
 
 
 mybatis:
@@ -26,5 +26,5 @@ logging:
   level:
     com.adweb.adweb.dao: DEBUG
 # 部署环境
-server:
-  port: 18081
+#server:
+#  port: 18081

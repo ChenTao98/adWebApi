@@ -1,7 +1,9 @@
 package com.adweb.adweb.controller;
 
+import com.adweb.adweb.entity.Knowledge;
 import com.adweb.adweb.entity.Note;
 import com.adweb.adweb.entity.NoteExample;
+import com.adweb.adweb.service.KnowledgeService;
 import com.adweb.adweb.service.NoteService;
 import com.adweb.adweb.utils.ApiResult;
 import com.adweb.adweb.utils.StringUtil;
@@ -17,12 +19,16 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/user/notes")
 public class NoteController {
     @Autowired
     private NoteService noteService;
+
+    @Autowired
+    private KnowledgeService knowledgeService;
 
 
     /**
@@ -94,14 +100,45 @@ public class NoteController {
         example.createCriteria().andUserIdEqualTo(userId);
 
         List<Note> notes = noteService.getAllNotes(example);
-        List<HashMap<String , String>> notesReturn = new ArrayList<>();
+        List<HashMap<String , Object>> notesReturn = new ArrayList<>();
         for (Note note: notes) {
-            HashMap<String, String> map = new HashMap<>();
+            HashMap<String, Object> map = new HashMap<>();
             map.put("url", note.getUrl());
-            map.put("content", new String(note.getContent(), "UTF-8"));
+            map.put("note_content", new String(note.getContent(), "UTF-8"));
+            String url = note.getUrl();
+            String[] urlParts = url.split("/");
+            int id = Integer.parseInt(urlParts[urlParts.length-1]);
+            if (url.contains("knowledge")) {
+                addKnowledgeInfo(map, id);
+            }
+            else {
+
+            }
             notesReturn.add(map);
         }
         return ApiResult.writeData(notesReturn, notesReturn.size());
+    }
+
+    /**
+     * 增加知识点信息
+     * */
+    private void addKnowledgeInfo(Map<String, Object> map, int knowledgeId) {
+        map.put("note_type", "knowledge");
+        map.put("id", knowledgeId);
+        Knowledge knowledge = knowledgeService.getKnowledgeByKnowledgeId(knowledgeId);
+        if (knowledge == null ) {
+            return;
+        }
+        map.put("content", knowledge.getContent());
+        map.put("importance_degree", knowledge.getImportanceDegree());
+        map.put("type", knowledge.getType());
+    }
+
+    /**
+     * 增加小节信息
+     * */
+    private void addSectionInfo(Map<String, String> map, int sectionId) {
+
     }
 
     /**
