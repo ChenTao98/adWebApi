@@ -2,6 +2,7 @@ package com.adweb.adweb.controller;
 
 import com.adweb.adweb.JsonUtil.JsonUtils;
 import com.adweb.adweb.JsonUtil.MyJson;
+import com.adweb.adweb.service.HomeworkService;
 import com.adweb.adweb.service.KnowledgeService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class SectionController {
     public String course_selection(@PathVariable() int section_id,@RequestParam("openId") String open_id){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",homeworkService.getHomeworkBySectionID(section_id,open_id));
+        jsonObject.put("dataList",homeworkService.getHomeworkBySectionID(section_id, open_id));
 
         return jsonObject.toString();
     }
