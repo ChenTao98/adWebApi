@@ -32,10 +32,6 @@ public class StudentController {
         JsonUtils.setSuccess(jsonObject);
         jsonObject.put("data",stu);
         return jsonObject.toString();
-
-
-
-
     }
     //更新学生信息
     @RequestMapping(value = "",method = RequestMethod.POST)
