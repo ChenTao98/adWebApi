@@ -1,10 +1,14 @@
 package com.adweb.adweb.controller;
 
+import com.adweb.adweb.JSONBean.course.ThemeCourseBean;
 import com.adweb.adweb.JsonUtil.JsonUtils;
 import com.adweb.adweb.JsonUtil.MyJson;
 import com.adweb.adweb.entity.Course;
+import com.adweb.adweb.entity.Theme;
 import com.adweb.adweb.service.CourseService;
 import com.adweb.adweb.service.StudentService;
+import com.adweb.adweb.service.ThemeService;
+import com.adweb.adweb.utils.PathUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,8 @@ public class CourseController {
     private CourseService courseService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private ThemeService themeService;
     //2.选课
     @RequestMapping(value = "taked/",method = RequestMethod.PUT,produces = "application/json;utf-8")
     public String course_selection(@RequestParam("courseId") int courseId,@RequestHeader(name="openId") String studentID){
@@ -84,7 +90,12 @@ public class CourseController {
     public String getAllCourseByThemeID(@PathVariable() int themeID,@RequestHeader(name="openId") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID,studentID));
+        //Ct修改
+//        jsonObject.put("dataList",courseService.getCourseByThemeID(themeID,studentID));
+        Theme theme=themeService.getThemeById(themeID);
+        ThemeCourseBean themeCourseBean=new ThemeCourseBean(themeID, PathUtil.COURSE_IMAGE_HTML+theme.getImageUrl(),
+                theme.getName(),theme.getSummary(),courseService.getCourseByThemeID(themeID,studentID));
+        jsonObject.put("data",themeCourseBean);
         return jsonObject.toString();
     }
 
