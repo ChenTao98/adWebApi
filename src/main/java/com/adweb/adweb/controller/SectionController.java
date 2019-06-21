@@ -4,6 +4,7 @@ import com.adweb.adweb.JsonUtil.JsonUtils;
 import com.adweb.adweb.JsonUtil.MyJson;
 import com.adweb.adweb.entity.HomeworkCommit;
 import com.adweb.adweb.entity.Knowledge;
+import com.adweb.adweb.service.CourseService;
 import com.adweb.adweb.service.HomeworkService;
 import com.adweb.adweb.service.KnowledgeService;
 import com.alibaba.fastjson.JSONObject;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class SectionController {
     @Autowired
     private KnowledgeService knowledgeService;
+    @Autowired
+    private CourseService courseService;
     
     @Autowired
     private HomeworkService homeworkService;
@@ -22,13 +25,13 @@ public class SectionController {
     @GetMapping(value = "{section_id}/knowledge",produces = "application/json;utf-8")
     public String course_selection(@PathVariable() int section_id){
 
-        try{
+        if(courseService.judgeWhetherSectionExisted(section_id)){
             JSONObject jsonObject=new MyJson();
             JsonUtils.setSuccess(jsonObject);
 
             jsonObject.put("dataList",knowledgeService.getKnowledgeBySectionId(section_id));
             return jsonObject.toString();
-        }catch (Exception e){
+        }else{
             JSONObject jsonObject=new MyJson();
             jsonObject.put("errorCode",3002);
             jsonObject.put("message","小节不存在");

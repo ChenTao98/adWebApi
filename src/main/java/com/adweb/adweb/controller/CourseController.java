@@ -20,7 +20,7 @@ public class CourseController {
     private StudentService studentService;
     //2.选课
     @RequestMapping(value = "taked/",method = RequestMethod.PUT,produces = "application/json;utf-8")
-    public String course_selection(@RequestParam("courseId") int courseId,@RequestHeader(name="openID") String studentID){
+    public String course_selection(@RequestParam("courseId") int courseId,@RequestHeader(name="openId") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         courseService.course_selection(studentID,courseId);
@@ -44,7 +44,7 @@ public class CourseController {
     }
     //5.获取学生选课列表
     @GetMapping(value = "taked",produces = "application/json;UTF-8")
-    public String getMyCourse(@RequestHeader(name="openID") String studentID){
+    public String getMyCourse(@RequestHeader(name="openId") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         jsonObject.put("dataList",studentService.getMyCourse(studentID));
@@ -53,7 +53,7 @@ public class CourseController {
 
     //6.课程详细信息
     @GetMapping(value = "{id}",produces = "application/json;UTF-8")
-    public String getCourseById(@PathVariable()Integer id,@RequestHeader(name="openID") String studentID){
+    public String getCourseById(@PathVariable()Integer id,@RequestHeader(name="openId") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         jsonObject.put("data",courseService.getCourseByIdAndStu(id,studentID));
@@ -63,7 +63,7 @@ public class CourseController {
 
     //7.获得课程列表
     @GetMapping(value = "",produces = "application/json;UTF-8")
-    public String getCourseById(@RequestHeader(name="openID") String studentID){
+    public String getCourseById(@RequestHeader(name="openId") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         jsonObject.put("dataList",courseService.getAllCourseOrderByType(studentID));
@@ -71,7 +71,7 @@ public class CourseController {
     }
     //8.获取分类课程
     @GetMapping(value = "type/{typeName}",produces = "application/json;UTF-8")
-    public String getCourseByType(@PathVariable() String typeName,@RequestHeader(name="openID") String studentID){
+    public String getCourseByType(@PathVariable() String typeName,@RequestHeader(name="openId") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         List<Course> list=courseService.getCourseByTypeAndStu(typeName,studentID);
@@ -81,7 +81,7 @@ public class CourseController {
 
     //11.根据主题id获取主题所有子课程
     @GetMapping(value = "theme/{themeID}",produces = "application/json;UTF-8")
-    public String getAllCourseByThemeID(@PathVariable() int themeID,@RequestHeader(name="openID") String studentID){
+    public String getAllCourseByThemeID(@PathVariable() int themeID,@RequestHeader(name="openId") String studentID){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
         jsonObject.put("dataList",courseService.getCourseByThemeID(themeID,studentID));

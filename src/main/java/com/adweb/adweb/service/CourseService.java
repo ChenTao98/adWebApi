@@ -23,4 +23,6 @@ public interface CourseService {
 
     String getTeacherNameById(String open_id);
 
+    Boolean judgeWhetherSectionExisted(int section_id);
+
 }

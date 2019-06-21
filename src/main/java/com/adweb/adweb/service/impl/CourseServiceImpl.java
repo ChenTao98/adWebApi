@@ -27,6 +27,8 @@ public class CourseServiceImpl implements CourseService {
     private TeacherDao teacherDao;
     @Autowired
     private TeacherAvatarDao teacherAvatarDao;
+    @Autowired
+    private SectionDao sectionDao;
     @Override
     public List<Course> getCourseByType(String type) {
         CourseExample courseExample=new CourseExample();
@@ -105,6 +107,14 @@ public class CourseServiceImpl implements CourseService {
         Choose_course choose_course  = new Choose_course(0,0,0,studentId,courseId);
 
         courseSelectionDao.add(choose_course);
+    }
+    @Override
+    public Boolean judgeWhetherSectionExisted(int section_id){
+        if(sectionDao.selectByPrimaryKey(section_id)!=null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
