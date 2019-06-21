@@ -34,7 +34,7 @@ public class HomeworkServiceImpl implements HomeworkService {
 
 
     @Override
-    public List<ChoiceQuestion> getHomeworkBySectionID(int sectionID, String openID) {
+    public Homework getHomeworkBySectionID(int sectionID, String openID) {
         List<ChoiceQuestion> questions = choiceQuestionDao.selectHomeworkBySectionID(sectionID);
         for (int i = 0; i < questions.size(); i++) {
             List<Option> optionList = optionDao.selectOptionByQuestionID(questions.get(i).getId());
@@ -43,7 +43,10 @@ public class HomeworkServiceImpl implements HomeworkService {
             int answerId = questionAnswerDao.selectOptionIDByStuAndQues(new QuestionAndStudent(openID, questions.get(i).getId()));
             questions.get(i).setAnswerId(answerId);
         }
-        return questions;
+        int chapter_id = sectionDao.getChapterIdBySectionId(sectionID);
+        int course_id = chapterDao.getCourseIdByChapterId(chapter_id);
+        Homework homework = new Homework(openID,course_id,chapter_id,sectionID,questions);
+        return homework;
     }
     @Override
     public void commit(HomeworkCommit homeworkCommit){

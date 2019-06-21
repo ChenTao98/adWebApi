@@ -31,7 +31,8 @@ public class SectionController {
     public String course_selection(@PathVariable() int section_id,@RequestHeader("openId") String open_id){
         JSONObject jsonObject=new MyJson();
         JsonUtils.setSuccess(jsonObject);
-        jsonObject.put("dataList",homeworkService.getHomeworkBySectionID(section_id, open_id));
+        System.out.println();
+        jsonObject.put("data",homeworkService.getHomeworkBySectionID(section_id, open_id));
 
         return jsonObject.toString();
     }

@@ -30,4 +30,6 @@ public interface SectionDao {
     int updateByPrimaryKey(Section record);
 
     int findMaxSectionID(int chapterID);
+
+    int getChapterIdBySectionId(int section_id);
 }

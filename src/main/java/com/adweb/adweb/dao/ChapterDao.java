@@ -29,4 +29,6 @@ public interface ChapterDao {
     int updateByPrimaryKey(Chapter record);
 
     int findMaxChapterID(int course_id);
+
+    int getCourseIdByChapterId(int chapter_id);
 }
