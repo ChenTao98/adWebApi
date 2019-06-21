@@ -25,5 +25,5 @@ mybatis:
 logging:
   level:
     com.adweb.adweb.dao: DEBUG
-server:
-  port: 18081
+#server:
+#  port: 18081

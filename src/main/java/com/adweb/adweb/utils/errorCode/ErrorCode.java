@@ -12,7 +12,9 @@ public enum ErrorCode {
         DELETE_COLLECTION_FAILED(2002, "取消收藏失败！"),
         ADD_NOTE_FAILED(2003, "添加笔记失败！"),
         MODIFY_NOTE_FAILED(2004, "修改笔记失败！"),
-        DELETE_NOTE_FAILED(2005, "删除笔记失败！");
+        DELETE_NOTE_FAILED(2005, "删除笔记失败！"),
+        // 获取openId
+        GET_OPEN_ID_FAILED(2006, "获取OpenId失败！")
     ;
 
 
