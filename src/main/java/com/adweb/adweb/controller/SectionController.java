@@ -45,18 +45,18 @@ public class SectionController {
     @GetMapping(value = "{section_id}/question",produces = "application/json;utf-8")
     public String course_selection(@PathVariable() int section_id,@RequestHeader("openId") String open_id){
 
-        try{
+//        try{
             JSONObject jsonObject=new MyJson();
             JsonUtils.setSuccess(jsonObject);
             System.out.println();
             jsonObject.put("data",homeworkService.getHomeworkBySectionID(section_id, open_id));
             return jsonObject.toString();
-        }catch (Exception e){
-            JSONObject jsonObject=new MyJson();
-            jsonObject.put("errorCode",3002);
-            jsonObject.put("message","小节不存在");
-            return jsonObject.toString();
-        }
+//        }catch (Exception e){
+//            JSONObject jsonObject=new MyJson();
+//            jsonObject.put("errorCode",3002);
+//            jsonObject.put("message","小节不存在");
+//            return jsonObject.toString();
+//        }
 
     }
     //提交作业
